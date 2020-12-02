@@ -13,7 +13,8 @@ final class MainScreenPresenter {
         view?.render(status: "Some status")
     }
 }
-
+```
+```Swift
 final class MainScreenViewController: UIViewController {
     required init(presenter: MainScreenPresenter) {
         self.presenter = presenter
@@ -65,11 +66,13 @@ final class MainScreenComposer {
 protocol MainScreenPresentation {
     func viewDidAppear()
 }
-
+```
+```Swift
 protocol MainScreenViewable {
     func render(status: String)
 }
-
+```
+```Swift
 final class MainScreenViewController: UIViewController, MainScreenViewable {
     required init(presenter: MainScreenPresentation) {
         self.presenter = presenter
@@ -91,7 +94,8 @@ final class MainScreenViewController: UIViewController, MainScreenViewable {
 
     private let presenter: MainScreenPresentation
 }
-
+```
+```Swift
 final class MainScreenPresenter: MainScreenPresentation {
     init(view: MainScreenViewable) {
         self.view = view
@@ -103,7 +107,8 @@ final class MainScreenPresenter: MainScreenPresentation {
 
     private let view: MainScreenViewable
 }
-
+```
+```Swift
 final class MainScreenComposer {
     func composeMainScreen() -> UIViewController {
         let viewWeakifyAdapter = ViewWeakifyAdapter()
@@ -113,7 +118,8 @@ final class MainScreenComposer {
         return viewController
     }
 }
-
+```
+```Swift
 final class ViewWeakifyAdapter: MainScreenViewable {
     weak var adaptee: (MainScreenViewable & AnyObject)?
 
