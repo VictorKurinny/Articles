@@ -16,13 +16,16 @@ DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
 ```Swift
 protocol Scheduling {
     func schedule(after delay: TimeInterval, block: @escaping () -> Void)
+}
 ```
 и его поддержку для `DispatchQueue`
+```Swift
 extension DispatchQueue: Scheduling {
     func schedule(after delay: TimeInterval, block: @escaping () -> Void) {
         asyncAfter(deadline: .now() + delay, execute: block)
     }
 }
+```
 
 ## Реализация с помощью TDD
 Допустим нужно поддерживать следующие ситуации:
